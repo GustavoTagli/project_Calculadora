@@ -68,7 +68,15 @@ namespace ConsoleCalculadora
                         break;
 
                     case 4:
-                        Dividir(val1, val2);
+                        try
+                        {
+                            Dividir(val1, val2);
+                        }
+                        catch(Exception e)
+                        {
+                            Console.WriteLine(e);
+                            Console.ReadKey();
+                        }
                         break;
                 }
             }
@@ -94,7 +102,16 @@ namespace ConsoleCalculadora
 
         public static void Dividir(float n1, float n2)
         {
+            if (DivisorZero(n2)) throw new Exception("Error: não é possível realizar este cálculo!");
+
             Console.WriteLine($"\n{n1} ÷ {n2} = {n1 / n2}");
+
+            bool DivisorZero(float a)
+            {
+                if (a <= 0) return true;
+                return false;
+            }
+
             Console.ReadKey();
         }
 
